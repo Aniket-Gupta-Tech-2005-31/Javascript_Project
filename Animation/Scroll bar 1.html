@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dark Tech Stack Marquee</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <style>
+    .marquee-track {
+      display: flex;
+      width: max-content;
+    }
+    .tech-logo img {
+      filter: grayscale(100%) brightness(1.2);
+    }
+  </style>
+</head>
+<body class="bg-gray-900 text-white flex items-center justify-center min-h-screen">
+
+  <div class="overflow-hidden w-full">
+    <div class="marquee-track space-x-12">
+      
+      <!-- Tech Stack Logos -->
+      <div class="tech-logo flex flex-row gap-2 items-center">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" class="h-12" alt="HTML">
+        <span class="text-sm mt-2">HTML</span>
+      </div>
+
+      <div class="tech-logo flex flex-row gap-2 items-center">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" class="h-12" alt="CSS">
+        <span class="text-sm mt-2">CSS</span>
+      </div>
+
+      <div class="tech-logo flex flex-row gap-2 items-center">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" class="h-12" alt="JS">
+        <span class="text-sm mt-2">JavaScript</span>
+      </div>
+
+      <div class="tech-logo flex flex-row gap-2 items-center">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" class="h-12" alt="Node.js">
+        <span class="text-sm mt-2">Node.js</span>
+      </div>
+
+      <div class="tech-logo flex flex-row gap-2 items-center">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" class="h-12 bg-white rounded p-1" alt="Express">
+        <span class="text-sm mt-2">Express.js</span>
+      </div>
+
+      <div class="tech-logo flex flex-row gap-2 items-center">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" class="h-12" alt="MongoDB">
+        <span class="text-sm mt-2">MongoDB</span>
+      </div>
+
+      <div class="tech-logo flex flex-row gap-2 items-center">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" class="h-12" alt="React">
+        <span class="text-sm mt-2">React</span>
+      </div>
+
+    </div>
+  </div>
+
+    
+
+  <script>
+    // Duplicate logos for seamless loop
+    const marqueeTrack = document.querySelector('.marquee-track');
+    marqueeTrack.innerHTML += marqueeTrack.innerHTML;
+
+    gsap.to(".marquee-track", {
+      xPercent: -50,
+      repeat: -1,
+      duration: 20,
+      ease: "linear"
+    });
+  </script>
+
+</body>
+</html>

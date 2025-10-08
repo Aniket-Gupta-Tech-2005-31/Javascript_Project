@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000000;
+        }
+
+        .hidden {
+            height: 100px;
+            margin: 50px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            background-color: rgb(141, 140, 140);
+            opacity: 0;
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .hidden::after {
+            content: '';
+            display: block;
+            width: 40%;
+            height: 3px;
+            margin: 0.5rem auto 0 auto;
+            background: linear-gradient(90deg, #6366f1, #a78bfa, #f472b6);
+            border-radius: 2px;
+            opacity: 0.5;
+            animation: underlineGlow 2s infinite alternate;
+        }
+
+        @keyframes underlineGlow {
+            0% {
+                opacity: 0.5;
+            }
+
+            100% {
+                opacity: 0.9;
+            }
+        }
+
+        /* Direction classes */
+        .left {
+            transform: translateX(-100px);
+        }
+
+        .right {
+            transform: translateX(100px);
+        }
+
+        .top {
+            transform: translateY(-100px);
+        }
+
+        .bottom {
+            transform: translateY(100px);
+        }
+
+        /* Show state */
+        .show {
+            opacity: 1;
+            transform: translateX(0) translateY(0);
+            /* reset all directions */
+            transition: 0.6s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="hidden left">Slide from Left</section>
+    <section class="hidden right">Slide from Right</section>
+    <section class="hidden top">Slide from Top</section>
+    <section class="hidden bottom">Slide from Bottom</section>
+
+
+    <script>
+        // Select all elements you want to animate
+        const hiddenElements = document.querySelectorAll('.hidden');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show'); // Animate in
+                } else {
+                    entry.target.classList.remove('show'); // Animate out if scrolling back
+                }
+            });
+        }, {
+            threshold: 0.1,           // Trigger when 10% visible
+            rootMargin: "0px 0px -50px 0px" // Start animation slightly before fully in view
+        });
+
+        // Observe each element
+        hiddenElements.forEach(el => observer.observe(el));
+
+    </script>
+
+</body>
+
+</html>
